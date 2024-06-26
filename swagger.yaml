@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  title: obs_api
+  contact: {}
+  version: "1.0"
+servers:
+  - url: http://localhost:5001/api/v1
+    variables: {}
+paths:
+  /jobs:
+    get:
+      tags:
+        - Jobs
+      summary: get jobs created by user
+      operationId: getjobscreatedbyuser
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    post:
+      tags:
+        - Jobs
+      summary: create job
+      operationId: createjob
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/createjobrequest"
+                - example:
+                    company: MLSWorldwide
+                    position: Junior Next.js developer
+            example:
+              company: MLSWorldwide
+              position: Junior Next.js developer
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs/667a757f9329b195ecca5b25:
+    get:
+      tags:
+        - Jobs
+      summary: get job created by user
+      operationId: getjobcreatedbyuser
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /jobs/667a7059d9df6b9558545d45:
+    patch:
+      tags:
+        - Jobs
+      summary: update job created by user
+      operationId: updatejobcreatedbyuser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/updatejobcreatedbyuserrequest"
+                - example:
+                    company: Ruliad
+                    position: Shit coder
+                    status: declined
+            example:
+              company: Ruliad
+              position: Shit coder
+              status: declined
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /jobs/667af0d0662cdbcc48dd0caf:
+    delete:
+      tags:
+        - Jobs
+      summary: delete job created by user
+      operationId: deletejobcreatedbyuser
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: register user
+      operationId: registeruser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/registeruserrequest"
+                - example:
+                    name: Vitalik Kabai
+                    email: kabai97@gmail.com
+                    password: Who1swhO1
+            example:
+              name: Vitalik Kabai
+              email: kabai97@gmail.com
+              password: Who1swhO1
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: login user
+      operationId: loginuser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/loginuserrequest"
+                - example:
+                    email: khomynt97@gmail.com
+                    password: Who1swhO1
+            example:
+              email: khomynt97@gmail.com
+              password: Who1swhO1
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    registeruserrequest:
+      title: registeruserrequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Vitalik Kabai
+        email: kabai97@gmail.com
+        password: Who1swhO1
+    loginuserrequest:
+      title: loginuserrequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: khomynt97@gmail.com
+        password: Who1swhO1
+    createjobrequest:
+      title: createjobrequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: MLSWorldwide
+        position: Junior Next.js developer
+    updatejobcreatedbyuserrequest:
+      title: updatejobcreatedbyuserrequest
+      required:
+        - company
+        - position
+        - status
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: Ruliad
+        position: Shit coder
+        status: declined
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Jobs
+    description: ""
+  - name: Auth
+    description: ""
